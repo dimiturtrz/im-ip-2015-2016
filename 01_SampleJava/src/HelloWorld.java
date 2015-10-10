@@ -5,6 +5,7 @@ public class HelloWorld {
 		// sysout CTRL+SPACE = System.out.print();
 		System.out.println("Hello Wolrd");
 		
-		
+		// C-style printf
+		System.out.printf("this is %d", 2+5);
 	}
 }

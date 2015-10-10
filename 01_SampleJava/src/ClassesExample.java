@@ -12,5 +12,7 @@ public class ClassesExample {
 		
 		System.out.println(room.calculateArea());
 	}
-	
+
+	public void setDimensions(Room room){
+	}
 }

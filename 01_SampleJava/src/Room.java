@@ -27,4 +27,15 @@ public class Room {
 		return height*width;
 
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if(obj==this)
+			return true;
+		if(obj instanceof Room){
+			final Room room2 = (Room) obj;
+			return room2.height==height && room2.width==width;
+		}
+		return false;
+	}
 }
