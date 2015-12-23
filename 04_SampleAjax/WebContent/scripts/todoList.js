@@ -62,6 +62,7 @@ $(document).ready(function() {
 		readTask(taskId).then(showTaskView);
 		$("#readPanel .task-action-remove").click(function(){
 			deleteTask(taskId);
+			reloadTasks();
 		});
 		$("#readPanel .task-action-ok").click(function(){
 			setupEditPanel(taskId);
@@ -87,6 +88,8 @@ $(document).ready(function() {
 		$("#createPanel .task-action-ok").click(function() {
 			var task = getTaskObject("create");
 			addTask(task);
+			reloadTasks();
+			showPanel("emptyPanel");
 		});
 	}
 	
