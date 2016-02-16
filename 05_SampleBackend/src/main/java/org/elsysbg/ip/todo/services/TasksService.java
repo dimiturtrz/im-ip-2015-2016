@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Singleton;
 
 import org.elsysbg.ip.todo.entities.Task;
+import org.elsysbg.ip.todo.entities.User;
 
 @Singleton
 public class TasksService {
@@ -15,12 +16,15 @@ public class TasksService {
 	private List<Task> tasks = Collections.synchronizedList(
 			new LinkedList<Task>());
 	
+	private User currentUser = new User(1, "user0", "password");
+	
 	private synchronized long getAndIncrementNextId() {
 		return ++lastId;
 	}
 
 	public Task createTask(Task task) {
 		task.setId(getAndIncrementNextId());
+		task.setUserId(currentUser.getId());
 		tasks.add(task);
 		return task;
 	}
