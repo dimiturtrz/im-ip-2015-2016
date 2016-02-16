@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	"use strict";
-	var ENDPOINT = "http://localhost:3000/tasks";
+	var ENDPOINT = "http://localhost:8080/05_SampleBackend/api/v1/tasks";
 	function taskEndpoint(taskId) {
 		return ENDPOINT + "/" + taskId;
 	}
@@ -61,6 +61,7 @@ $(document).ready(function() {
 	function setupReadPanel(taskId){
 		readTask(taskId).then(showTaskView);
 		$("#readPanel .task-action-remove").click(function(){
+			resetFields();
 			deleteTask(taskId);
 			reloadTasks();
 		});
@@ -89,6 +90,8 @@ $(document).ready(function() {
 			var task = getTaskObject("create");
 			addTask(task);
 			reloadTasks();
+			$("#createPanel input[name=title]").val("");
+			$("#createPanel textarea[name=description]").val("");
 			showPanel("emptyPanel");
 		});
 	}
@@ -119,6 +122,13 @@ $(document).ready(function() {
 			_.forEach(response, addTaskToList);
 		});
 	}
+	function resetFields(){
+		$("#createPanel input[name=title]").val("");
+		$("#createPanel textarea[name=description]").val("");
+		$("#readPanel .task-title").text("");
+		$("#readPanel .task-description").text("");
+	}
+	
 	function attachHandlers() {
 		$(document).on("click", "#tasksList [data-task-id]", function() {
 			var taskId = $(this).attr("data-task-id");
@@ -130,6 +140,7 @@ $(document).ready(function() {
 		});
 		
 		$(".task-action-cancel").click(function() {
+			resetFields();
 			showPanel("emptyPanel");
 		});
 	}
